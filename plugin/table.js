@@ -6,7 +6,7 @@ class Table {
                 columns: [],
                 container: document.body,
                 className: 'easy-table' // 表格样式类名
-            }, 
+            },
             ...options
         } // 最终配置
         this.init();
@@ -18,9 +18,10 @@ class Table {
                 container: this.tfoot,
                 ...this.options.pageOptions
             })
-            this.pager.total = val;
-            this.pager.render();
+
         }
+        this.pager.total = val;
+        this.pager.render();
     }
 
     get dataSource() {
@@ -29,7 +30,7 @@ class Table {
 
     set dataSource(val) {
         if (!Array.isArray(val)) {
-           throw new TypeError('数据必须是一个标准的数组');
+            throw new TypeError('数据必须是一个标准的数组');
         }
         this.tbody.innerHTML = ''; // 清空之前的元素
         for (const data of val) {
@@ -49,7 +50,7 @@ class Table {
         }
         this._dataSource = val;
     }
-    
+
     /**
      * 表格初始化(生成各种dom元素)
      */
@@ -97,7 +98,7 @@ class Pager {
         this.container = container;
         this.pageSize = pageSize;
         this.panelNumber = panelNumber;
-        this.render();
+        // this.render();
     }
 
     /**
@@ -106,7 +107,7 @@ class Pager {
      * @memberof Pager
      */
     get pageNumber() {
-        return Math.ceil(this.total / this.pageSize); 
+        return Math.ceil(this.total / this.pageSize);
     }
 
     /**
@@ -152,12 +153,12 @@ class Pager {
                 span.className = 'current';
             }
         }
-        
+
         // 生成尾页和下一页
         if (this.current < this.pageNumber) {
             createSpan('下一页', this.current + 1);
             createSpan('尾页', this.pageNumber);
-        }     
+        }
 
         this.container.appendChild(this.dom);
     }
